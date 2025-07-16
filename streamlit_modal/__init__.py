@@ -13,7 +13,7 @@ except ImportError:
 
 class Modal:
 
-    def __init__(self, title, key, padding=20, max_width=744):
+    def __init__(self, title, key, padding=20, max_width=744, show_close_button=True):
         """
         :param title: title of the Modal shown in the h1
         :param key: unique key identifying this modal instance
@@ -24,6 +24,7 @@ class Modal:
         self.padding = padding
         self.max_width = str(max_width) + "px"
         self.key = key
+        self.show_close_button = show_close_button
 
     def is_open(self):
         return st.session_state.get(f'{self.key}-opened', False)
@@ -114,10 +115,11 @@ class Modal:
             if self.title:
                 with title:
                     st.header(self.title)
-            with close_button:
-                close_ = st.button('X', key=f'{self.key}-close')
-                if close_:
-                    self.close()
+            if self.show_close_button:
+                with close_button:
+                    close_ = st.button('X', key=f'{self.key}-close')
+                    if close_:
+                        self.close()
             
             _container.divider()
 
