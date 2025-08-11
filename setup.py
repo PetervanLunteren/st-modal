@@ -7,11 +7,11 @@ def setup_package():
         readme = f.read()
 
     setup(
-        name="streamlit_modal",
+        name="st-modal",
         install_requires=['streamlit', 'deprecation'],
         version="0.1.2",
-        author="Koen Vossen",
-        author_email="info@koenvossen.nl",
+        author="Peter van Lunteren",
+        author_email="",
         url="https://github.com/teamtv/streamlit_modal",
         packages=setuptools.find_packages(),
         license="BSD",

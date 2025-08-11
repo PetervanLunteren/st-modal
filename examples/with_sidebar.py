@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_modal import Modal
+from st_modal import Modal
 
 import streamlit.components.v1 as components
 
