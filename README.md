@@ -1,47 +1,55 @@
 # st-modal
 
-Modal support for streamlit. A fork from https://github.com/teamtv/streamlit_modal with a few adjustments.
+A modern modal dialog component for Streamlit applications. This is a fork of the original [streamlit_modal](https://github.com/teamtv/streamlit_modal) with improvements and adjustments.
 
-## Example
+## Installation
+
+```bash
+pip install st-modal
+```
+
+## Quick Start
 
 ```python
 import streamlit as st
 from st_modal import Modal
 
-import streamlit.components.v1 as components
+# Create modal
+modal = Modal("My Modal", key="my-modal")
 
-modal = Modal(
-    "Demo Modal", 
-    key="demo-modal",
-    
-    # Optional
-    padding=20,    # default value
-    max_width=744  # default value
-)
-open_modal = st.button("Open")
-if open_modal:
+# Trigger to open modal
+if st.button("Open Modal"):
     modal.open()
 
+# Modal content
 if modal.is_open():
     with modal.container():
-        st.write("Text goes here")
-
-        html_string = '''
-        <h1>HTML string in RED</h1>
-
-        <script language="javascript">
-          document.querySelector("h1").style.color = "red";
-        </script>
-        '''
-        components.html(html_string)
-
-        st.write("Some fancy text")
-        value = st.checkbox("Check me")
-        st.write(f"Checkbox checked: {value}")
+        st.write("Hello from inside the modal!")
+        
+        value = st.slider("Pick a value", 0, 100, 50)
+        st.write(f"Selected: {value}")
+        
+        if st.button("Close", key="close-modal"):
+            modal.close()
 ```
 
-## Install
+## API Reference
 
-```shell script
-pip install st-modal
+### Modal Class
+
+```python
+Modal(title, key, padding=20, max_width=744, show_close_button=True)
 ```
+
+**Parameters:**
+- `title` (str): Title displayed at the top of the modal
+- `key` (str): Unique identifier for the modal (required)
+- `padding` (int): Internal padding in pixels (default: 20)
+- `max_width` (int): Maximum width in pixels (default: 744)
+- `show_close_button` (bool): Whether to show the X close button (default: True)
+
+**Methods:**
+- `modal.open()`: Opens the modal and triggers a rerun
+- `modal.close()`: Closes the modal and triggers a rerun
+- `modal.is_open()`: Returns True if modal is currently open
+- `modal.container()`: Context manager for adding content to the modal
