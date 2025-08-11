@@ -1,15 +1,14 @@
-# Streamlit modal
+# st-modal
 
-Modal support for streamlit. The hackish way.
+Modal support for streamlit. A fork from https://github.com/teamtv/streamlit_modal with a few adjustments.
 
 ## Example
 
 ```python
 import streamlit as st
-from streamlit_modal import Modal
+from st_modal import Modal
 
 import streamlit.components.v1 as components
-
 
 modal = Modal(
     "Demo Modal", 
@@ -44,5 +43,5 @@ if modal.is_open():
 ## Install
 
 ```shell script
-pip install streamlit-modal
+pip install st-modal
 ```
